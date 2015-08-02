@@ -1,0 +1,18 @@
+create table t_user(
+	id int not null auto_increment primary key,
+    name varchar(20),
+    dt_1 datetime,
+    dt_2 date
+);
+
+create table t_department(
+	id int not null auto_increment primary key,
+    name varchar(20),
+    user_id int references t_user(id),
+    dt datetime
+);
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUser`(in id int, out o_name varchar(20))
+BEGIN
+	select name into o_name from t_user u where u.id = id;
+END
