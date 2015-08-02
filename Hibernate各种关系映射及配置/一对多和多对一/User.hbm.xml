@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="ac.nz.unitec.model.User" table="user">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<set name="emails">
+			<key column = "user_id"/>
+			<one-to-many class="ac.nz.unitec.model.Email"/>
+		</set>
+    </class>
+	
+</hibernate-mapping>

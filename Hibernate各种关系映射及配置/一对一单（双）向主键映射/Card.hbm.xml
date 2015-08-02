@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+	<class name="ac.nz.unitec.model.Card" table="card">
+		<id name="id" type="int" column="id">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+		<timestamp name="dt" column="dt" />
+		<one-to-one name="user" class="ac.nz.unitec.model.User"
+			constrained="true" />
+	</class>
+</hibernate-mapping>
