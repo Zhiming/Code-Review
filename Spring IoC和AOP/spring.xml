@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+		
+	<!-- 
+ 	<aop:aspectj-autoproxy />
+ 	 -->
+
+	<bean id="user" class="ac.nz.unitec.model.User">
+		<property name="name" value="zhangsan"/>
+	</bean>
+	
+	<bean id="advisor" class="ac.nz.unitec.spring.spring_review.Advisor"/>
+	
+	<bean id="group" class="ac.nz.unitec.model.Group">
+		<property name="set">
+			<set>
+				<ref bean="user"/>
+			</set>
+		</property>
+		<property name="list">
+			<list>
+				<ref bean="user"/>
+			</list>	
+		</property>
+		<property name="map">
+			<map>
+				<entry key="1" value-ref="user"/>
+			</map>
+		</property>
+	</bean>
+	
+	<aop:config>  
+        <aop:aspect ref="advisor">  
+            <aop:pointcut id="beforePointCut" expression="execution(public void ac.nz.unitec.model.Group.aopIsBefore(..))"/>
+			<aop:pointcut id="aroundPointCut" expression="execution(public void ac.nz.unitec.model.Group.aopIsAround(..))"/>
+			<aop:pointcut id="throwPointCut" expression="execution(public void ac.nz.unitec.model.Group.aopWhenThrow(..))"/>
+			<aop:before method="beforeM" pointcut-ref="beforePointCut"/>
+			<aop:around method="around" pointcut-ref="aroundPointCut"/>
+			<aop:after-throwing method="throwM" pointcut-ref="throwPointCut"/>
+        </aop:aspect>  
+    </aop:config>  
+	
+</beans>
