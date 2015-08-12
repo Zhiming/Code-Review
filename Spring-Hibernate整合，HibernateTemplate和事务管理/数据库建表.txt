@@ -1,0 +1,12 @@
+create table t_user(
+id int auto_increment not null primary key,
+    name varchar(20) not null,
+    dt timestamp not null
+);
+
+
+create table t_log(
+	id int auto_increment not null primary key,
+    msg varchar(255) not null,
+    dt timestamp not null
+);

@@ -1,0 +1,4 @@
+注意在jdbc.properties文件中，改数据库的名称
+spring事务管理，在事务出现异常时，自动回滚
+HibernateTemplate的使用，省略了打开session的麻烦和SessionFactory的管理
+注意，在配置tx:advice的时候，要配置propagation属性
